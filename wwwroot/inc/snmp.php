@@ -1680,6 +1680,15 @@ $iftable_processors['arista-any-1000T'] = array
 	'try_next_proc' => FALSE,
 );
 
+$iftable_processors['arista-any-10GBase-T'] = array
+(
+	'pattern' => '@^Ethernet([[:digit:]]+)$@',
+	'replacement' => 'e\\1',
+	'dict_key' => '1-1642',
+	'label' => '\\1',
+	'try_next_proc' => FALSE,
+);
+
 $iftable_processors['arista-49-to-52-SFP+'] = array
 (
 	'pattern' => '@^Ethernet(49|50|51|52)$@',
@@ -4435,6 +4444,12 @@ $known_switches = array // key is system OID w/o "enterprises" prefix
 		'dict_key' => 1726,
 		'text' => 'DCS-7048T-A: 48 1000T + 4 SFP+/10000',
 		'processors' => array ('arista-49-to-52-SFP+', 'arista-any-1000T', 'arista-management'),
+	),
+	'30065.1.3011.7050.1958.64' => array
+	(
+		'dict_key' => 2262,
+		'text' => 'DCS-7050TX-64: 48 10GBase-T + 4 QSFP+',
+		'processors' => array ('arista-any-10GBase-T', 'arista-QSFP+-breakout', 'arista-management'),
 	),
 	'30065.1.3011.7050.3282.52' => array
 	(
